@@ -23,13 +23,18 @@ public class CloseRange {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj){
+		if (this == obj) {
 			return true;
 		}
 		if (obj instanceof CloseRange) {
 			CloseRange anotherCloseRange = (CloseRange) obj;
 			return anotherCloseRange.display().equals(this.display());
 		}
+		return false;
+	}
+
+	public boolean contains(CloseRange anotherCloseRange) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

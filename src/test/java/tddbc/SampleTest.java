@@ -3,6 +3,7 @@ package tddbc;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -56,6 +57,12 @@ public class SampleTest {
 	public void 下端点3上端点8の整数閉区間と下端点2上端点9の整数閉区間が等価であると判定できる() {
 		CloseRange anotherCloseRange = new CloseRange(2, 9);
 		assertThat(closeRange_3_8.equals(anotherCloseRange), is(false));
+	}
+
+	@Test
+	public void 下端点3上端点8の整数閉区間に下端点3上端点9の整数閉区間が完全に含まれない() {
+		CloseRange anotherCloseRange = new CloseRange(3, 9);
+		assertThat(closeRange_3_8.contains(anotherCloseRange), is(false));
 	}
 
 }
