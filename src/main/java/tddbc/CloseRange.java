@@ -6,7 +6,7 @@ public class CloseRange {
 	private final int upperEndpoint;
 
 	public CloseRange(int lowerEndpoint, int upperEndpoint) {
-		if (lowerEndpoint > upperEndpoint) {
+		if ((lowerEndpoint <= upperEndpoint) == false) {
 			throw new IllegalArgumentException();
 		}
 		this.lowerEndpoint = lowerEndpoint;
@@ -18,7 +18,7 @@ public class CloseRange {
 	}
 
 	public boolean include(int number) {
-		return this.lowerEndpoint <= number && this.upperEndpoint >= number;
+		return this.lowerEndpoint <= number && number <= this.upperEndpoint;
 	}
 
 	@Override
@@ -34,7 +34,8 @@ public class CloseRange {
 	}
 
 	public boolean contains(CloseRange anotherCloseRange) {
-	    return anotherCloseRange.lowerEndpoint >= this.lowerEndpoint && anotherCloseRange.upperEndpoint <= this.upperEndpoint;
+		return this.lowerEndpoint <= anotherCloseRange.lowerEndpoint
+				&& anotherCloseRange.upperEndpoint <= this.upperEndpoint;
 	}
 
 }
