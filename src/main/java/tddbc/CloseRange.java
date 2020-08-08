@@ -34,8 +34,7 @@ public class CloseRange {
 	}
 
 	public boolean contains(CloseRange anotherCloseRange) {
-		// TODO Auto-generated method stub
-		return false;
+	    return anotherCloseRange.lowerEndpoint >= this.lowerEndpoint && anotherCloseRange.upperEndpoint <= this.upperEndpoint;
 	}
 
 }
