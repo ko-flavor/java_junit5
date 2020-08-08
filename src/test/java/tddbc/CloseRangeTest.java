@@ -13,9 +13,9 @@ public class CloseRangeTest {
 	CloseRange closeRange_3_8 = new CloseRange(3, 8);
 
 	@Nested
-	class 整数閉区間は文字列表現を返せる {
+	class 整数閉区間は文字列表現を返すことができる {
 		@Test
-		@DisplayName("下端点3,上端点 8 の整数閉区間の文字列表記は[3,8]")
+		@DisplayName("下端点3,上端点 8 の整数閉区間の文字列表記は[3,8]となる")
 		public void 下端点3上端点8の整数閉区間の文字列表記() {
 			assertThat(closeRange_3_8.display(), is("[3,8]"));
 		}
@@ -24,12 +24,12 @@ public class CloseRangeTest {
 	@Nested
 	class 上端点より下端点が大きい整数閉区間を作ることはできない {
 		@Test
-		public void 下端点8上端点3の整数閉区間は生成できない() {
+		public void 下端点8上端点3の整数閉区間を生成しない() {
 			assertThrows(IllegalArgumentException.class, () -> new CloseRange(8, 3));
 		}
 
 		@Test
-		public void 下端点3上端点3の整数閉区間は生成できる() {
+		public void 下端点3上端点3の整数閉区間を生成する() {
 			new CloseRange(3, 3);
 		}
 	}
@@ -60,20 +60,20 @@ public class CloseRangeTest {
 	@Nested
 	class 別の整数閉区間と等価かどうかを判定できる {
 		@Test
-		public void 下端点3上端点8の整数閉区間と下端点3上端点8の整数閉区間が等価であると判定できる() {
+		public void 下端点3上端点8の整数閉区間と下端点3上端点8の整数閉区間が等価である() {
 			CloseRange anotherCloseRange = new CloseRange(3, 8);
 			assertThat(closeRange_3_8.equals(anotherCloseRange), is(true));
 		}
 
 		@Test
-		public void 下端点3上端点8の整数閉区間と下端点2上端点9の整数閉区間が等価であると判定できる() {
+		public void 下端点3上端点8の整数閉区間と下端点2上端点9の整数閉区間が等価でない() {
 			CloseRange anotherCloseRange = new CloseRange(2, 9);
 			assertThat(closeRange_3_8.equals(anotherCloseRange), is(false));
 		}
 	}
 
 	@Nested
-	class 別の整数閉区間に完全に含まれるかどうかも判定できる {
+	class 別の整数閉区間に完全に含まれるかどうかを判定できる {
 		@Test
 		public void 下端点3上端点8の整数閉区間に下端点3上端点9の整数閉区間が完全に含まれない() {
 			CloseRange anotherCloseRange = new CloseRange(3, 9);
