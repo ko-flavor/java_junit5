@@ -58,7 +58,7 @@ public class CloseRangeTest {
 	}
 
 	@Nested
-	class 別の整数閉区間と等価かどうかを判定できる {
+	class ある整数閉区間は別の整数閉区間と等価かどうかを判定できる {
 		@Test
 		public void 下端点3上端点8の整数閉区間と下端点3上端点8の整数閉区間が等価である() {
 			CloseRange anotherCloseRange = new CloseRange(3, 8);
@@ -73,17 +73,24 @@ public class CloseRangeTest {
 	}
 
 	@Nested
-	class 別の整数閉区間に完全に含まれるかどうかを判定できる {
-		@Test
-		public void 下端点3上端点8の整数閉区間に下端点3上端点9の整数閉区間が完全に含まれない() {
-			CloseRange anotherCloseRange = new CloseRange(3, 9);
-			assertThat(closeRange_3_8.contains(anotherCloseRange), is(false));
+	class ある整数閉区間は別の整数閉区間を完全に含むかどうかを判定できる {
+
+		@Nested
+		class 上端点がはみ出ているので含まれない {
+			@Test
+			public void 下端点3上端点8の整数閉区間に下端点3上端点9の整数閉区間が完全に含まれない() {
+				CloseRange anotherCloseRange = new CloseRange(3, 9);
+				assertThat(closeRange_3_8.contains(anotherCloseRange), is(false));
+			}
 		}
 
-		@Test
-		public void 下端点3上端点8の整数閉区間に下端点2上端点8の整数閉区間が完全に含まれない() {
-			CloseRange anotherCloseRange = new CloseRange(2, 8);
-			assertThat(closeRange_3_8.contains(anotherCloseRange), is(false));
+		@Nested
+		class 下端点がはみ出ているので含まれない {
+			@Test
+			public void 下端点3上端点8の整数閉区間に下端点2上端点8の整数閉区間が完全に含まれない() {
+				CloseRange anotherCloseRange = new CloseRange(2, 8);
+				assertThat(closeRange_3_8.contains(anotherCloseRange), is(false));
+			}
 		}
 
 		@Test
