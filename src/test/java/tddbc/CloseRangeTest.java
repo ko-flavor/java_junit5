@@ -93,16 +93,23 @@ public class CloseRangeTest {
 			}
 		}
 
-		@Test
-		public void 下端点3上端点8の整数閉区間に下端点3上端点8の整数閉区間が完全に含まれる() {
-			CloseRange anotherCloseRange = new CloseRange(3, 8);
-			assertThat(closeRange_3_8.contains(anotherCloseRange), is(true));
+		@Nested
+		class 下端点と上端点がともに一致しているので含まれる {
+			@Test
+			public void 下端点3上端点8の整数閉区間に下端点3上端点8の整数閉区間が完全に含まれる() {
+				CloseRange anotherCloseRange = new CloseRange(3, 8);
+				assertThat(closeRange_3_8.contains(anotherCloseRange), is(true));
+			}
 		}
 
-		@Test
-		public void 下端点3上端点8の整数閉区間に下端点4上端点7の整数閉区間が完全に含まれる() {
-			CloseRange anotherCloseRange = new CloseRange(4, 7);
-			assertThat(closeRange_3_8.contains(anotherCloseRange), is(true));
+		@Nested
+		class ある整数閉区間の下端点と上端点の内側に別の整数閉区間の下端点と上端点があるため含まれる {
+
+			@Test
+			public void 下端点3上端点8の整数閉区間に下端点4上端点7の整数閉区間が完全に含まれる() {
+				CloseRange anotherCloseRange = new CloseRange(4, 7);
+				assertThat(closeRange_3_8.contains(anotherCloseRange), is(true));
+			}
 		}
 	}
 }
