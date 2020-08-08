@@ -14,7 +14,7 @@ public class CloseRange {
 	}
 
 	public String display() {
-		return "[" + lowerEndpoint + "," + upperEndpoint + "]";
+		return String.format("[%d,%d]", lowerEndpoint, upperEndpoint);
 	}
 
 	public boolean include(int number) {
@@ -28,9 +28,21 @@ public class CloseRange {
 		}
 		if (obj instanceof CloseRange) {
 			CloseRange anotherCloseRange = (CloseRange) obj;
-			return anotherCloseRange.display().equals(this.display());
+			return identify(anotherCloseRange);
 		}
 		return false;
+	}
+
+	public boolean identify(CloseRange another){
+		return another.display().equals(this.display());
+	}
+
+	@Override
+	public int hashCode() {
+		int result = 17;
+		result = 31 * result + lowerEndpoint;
+		result = 31 * result + upperEndpoint;
+		return result;
 	}
 
 	public boolean contains(CloseRange anotherCloseRange) {
